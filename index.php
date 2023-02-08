@@ -16,7 +16,11 @@
 <body>
     <div class="container">
         <h1 class="text-center">Password Generator</h1>
-
+        <form action="" method="POST" class="text-center">
+            <input type="text" name="result">
+            <input type="number" name="password" min="1" max="12">
+        </form>
+        <h3 class="text-center mt-5">La tua passowrd è:</h3>
     </div>
 </body>
 
