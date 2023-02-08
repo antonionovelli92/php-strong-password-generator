@@ -1,15 +1,5 @@
 <?php
-$pass_length = $_GET['password'];
-function generatePassword($pass_length)
-{
-    $pass = '';
-    $parts = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
-    for ($i = 0; strlen($pass) <= $pass_length - 1; $i++) {
-        $pass .= $parts[array_rand($parts)];
-    }
-    return $pass;
-}
-
+include './functions.php'
 ?>
 
 <!DOCTYPE html>
@@ -30,11 +20,11 @@ function generatePassword($pass_length)
 <body>
     <div class="container">
         <h1 class="text-center mb-4">Password Generator</h1>
-        <form action="" method="GET" class="text-center">
+        <form action="#" method="GET" class="text-center">
             <input type="number" name="password">
             <button>GENERA</button>
         </form>
-        <h3 class="text-center mt-5">La tua passowrd è:<?= generatePassword($pass_length) ?></h3>
+        <h3 class="text-center mt-5">La tua passowrd è: <span class="text-danger"><?= generatePassword($pass_length) ?></span> </h3>
     </div>
 </body>
 
