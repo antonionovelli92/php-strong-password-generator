@@ -1,5 +1,13 @@
 <?php
-include './functions.php'
+require __DIR__ . '/functions.php';
+
+//Recuperiamo la lunghezza data dall'utente
+if (isset($_GET['length'])) {
+    $result = generate_password($_GET['length']);
+
+    if ($result === true) header('Location: success.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +27,38 @@ include './functions.php'
 
 <body>
     <div class="container">
-        <h1 class="text-center mb-4">Password Generator</h1>
-        <form action="#" method="GET" class="text-center">
-            <input type="number" name="password">
-            <button>GENERA</button>
-        </form>
-        <h3 class="text-center mt-5">La tua passowrd è: <span class="text-danger"><?= generatePassword($pass_length) ?></span> </h3>
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1 class="text-white-50">Strong Password Generator</h1>
+                <h2 class="text-white">Genera una password sicura</h2>
+            </div>
+            <?php if (isset($result)) : ?>
+                <div class="col-7">
+                    <div class="alert alert-danger">
+                        <strong><?= $result ?></strong>
+                    </div>
+                </div>
+            <?php endif ?>
+            <div class="col-7">
+                <form class="p-3 border border-1 rounded-2 bg-light" action="index.php" method="GET">
+
+                    <div class="row mb-3">
+                        <label for="length" class="col-sm-7 col-form-label">Lunghezza password:</label>
+                        <div class="col-sm-3">
+                            <input type="number" name="length" id="length" class="form-control" value="5" step="1">
+                        </div>
+                    </div>
+                    <div class="mb-3 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary me-3">INVIA</button>
+                        <button type="reset" class="btn btn-secondary me-3">ANNULLA</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
     </div>
 </body>
 
